@@ -8,7 +8,7 @@
 # |    ^    |
 # |  \___/  |
 #  \_______/
-
+# Worst Time Complexity
 # 3*3 box checker for indexes
 def box_checker( array_for_line , row_number , col_number , number ):
     if ( 0<=row_number<=2 and 0<=col_number<=2 ):
