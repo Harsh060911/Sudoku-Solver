@@ -1,14 +1,13 @@
 # Sudoku Solver 
 # Harsh
 # Start - 10 May 2025
-# End - 13 May 2025
 #    -----
 #  /       \
 # |  O   O  |
 # |    ^    |
 # |  \___/  |
 #  \_______/
-# Worst Time Complexity
+
 # 3*3 box checker for indexes
 def box_checker( array_for_line , row_number , col_number , number ):
     if ( 0<=row_number<=2 and 0<=col_number<=2 ):
@@ -76,27 +75,41 @@ def array_maker_for_values(array_for_line , row_number , col_number ):
     return array_for_value_it_can_take
 
 #  Recusrsive Function to solve 
-def Suduko_solver(array_for_line):
-    count = 0 
-    for i in range(9):
-        for j in range(9):
-            if array_for_line[i][j]==0 :
-                count += 1
-                values_it_can_take = array_maker_for_values(array_for_line,  i , j)
-                if len(values_it_can_take)==0 :
-                    return
-                for k in values_it_can_take:
-                    array_for_line[i][j]=k
-                    array_col_wise[j][i]=k
-                    S = Suduko_solver(array_for_line)
-                    if S=="Done":
-                        return S 
-                    array_for_line[i][j]=0
-                    array_col_wise[j][i]=0
-                return
-    if  count ==0 :
-        return "Done"
-    return "NO"
+def Suduko_solver(array_for_line , row_number , col_number):
+    if array_for_line[row_number][col_number]!=0 :
+        if col_number<8:
+            return Suduko_solver(array_for_line ,row_number , col_number+1 )
+        elif row_number<8:
+            return Suduko_solver(array_for_line , row_number +1 , 0)
+        else:
+            return "Done"
+    # print("Here for -",row_number,col_number)
+    if array_for_line[row_number][col_number]==0 :
+        values_it_can_take = array_maker_for_values(array_for_line,  row_number , col_number)
+        # print(values_it_can_take)
+        if len(values_it_can_take)==0 :
+            return None
+        for k in values_it_can_take:
+            # print(f"taking {k} for {row_number} , {col_number}")
+            array_for_line[row_number][col_number]=k
+            array_col_wise[col_number][row_number]=k
+            # print()
+            # for i in range(9):
+            #     for j in range(9):
+            #         print(array_for_line_of_sudoku[i][j],end=" ")
+            #     print()
+            # print()
+            if col_number<8:
+                S = Suduko_solver(array_for_line ,row_number , col_number+1 )
+            elif row_number<8:
+                S =  Suduko_solver(array_for_line , row_number +1 , 0)
+            else:
+                return "Done"
+            if S=="Done":
+                return S 
+            array_for_line[row_number][col_number]=0
+            array_col_wise[col_number][row_number]=0
+        return None
 
 #  Taking 0 at the place of blank space 
 #  Taking Inputs 
@@ -112,13 +125,16 @@ for i in range(9):
 
 
 # Calling function to solve
-Suduko_solver(array_for_line_of_sudoku)
+F = Suduko_solver(array_for_line_of_sudoku , 0, 0)
 
 
 #  Final Priting 
-print("\n\n")
-print("Here is Your Solved Sudoku")
-for i in range(9):
-    for j in range(9):
-        print(array_for_line_of_sudoku[i][j],end=" ")
-    print()
+if F=="Done":
+    print("\n\n")
+    print("Here is Your Solved Sudoku")
+    for i in range(9):
+        for j in range(9):
+            print(array_for_line_of_sudoku[i][j],end=" ")
+        print()
+else :
+    print("\n\nThe Given Sudoku can't be solved.")
