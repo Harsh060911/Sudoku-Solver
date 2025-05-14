@@ -1,4 +1,4 @@
-Sudoku Solver - Python
+# Sudoku Solver 
 Overview
 This repository contains a simple yet effective Sudoku solver implemented in pure Python without any external dependencies. The solver uses a backtracking algorithm to find the correct solution for any valid 9×9 Sudoku puzzle.
 
