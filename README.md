@@ -9,10 +9,11 @@ Backtracking algorithm for efficient solving
 How to Use
 Input Format - You can See in "input.txt"
 
-Algorithm
-The solver uses a backtracking algorithm which:
-Finds the next empty cell
-Tries numbers 1-9 in that cell
-For each valid number (following Sudoku rules), it recursively tries to solve the rest
-If it hits a dead end, it backtracks and tries the next number
+Algorithm - 
+The solver uses a backtracking algorithm which Finds the next empty cell and Tries valid numbers  (following Sudoku rules) from 1-9 in that cell, it recursively tries to solve the rest empty spaces and if it hits a dead end ( for an empty cell no valid entries are present) , it backtracks and tries the next number.
+
 This approach guarantees a solution if one exists for the given puzzle.
+
+I Hopes it will be helpful !
+
+Thanks if you reaches till here reading this .
