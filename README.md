@@ -1,4 +1,5 @@
 # Sudoku-Solver
+9 X 9  Sudoku Solver 
 Hi , This repository has code for solving sudoku. This code is very basic one in python , have not used any library or something.
 It will take rows as inputs ( enter 0 in place for blank spaces ).
 You can see input fomat in input.txt file.
